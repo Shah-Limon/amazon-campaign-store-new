@@ -32,18 +32,18 @@ export default function CampaignsPage() {
   return (
     <div>
       <h1 className="page-title">Campaign Records</h1>
-      
+
       <div className="card">
         <div style={{ display: 'flex', gap: '1rem', marginBottom: '1.5rem', alignItems: 'center' }}>
-          <input 
-            type="text" 
-            placeholder="Search by Campaign Name or ID..." 
+          <input
+            type="text"
+            placeholder="Search by Campaign Name or ID..."
             value={search}
             onChange={e => { setSearch(e.target.value); setPage(1); }}
             style={{ flexGrow: 1, padding: '0.6rem 1rem', borderRadius: '6px', border: '1px solid #cbd5e1', outline: 'none' }}
           />
-          <select 
-            value={status} 
+          <select
+            value={status}
             onChange={e => { setStatus(e.target.value); setPage(1); }}
             style={{ padding: '0.6rem 1rem', borderRadius: '6px', border: '1px solid #cbd5e1', outline: 'none', background: 'white' }}
           >
@@ -61,7 +61,7 @@ export default function CampaignsPage() {
                 <th style={{ padding: '1rem' }}>Name</th>
                 <th style={{ padding: '1rem' }}>Brand</th>
                 <th style={{ padding: '1rem' }}>Status</th>
-                <th style={{ padding: '1rem' }}>Actions</th>
+                <th style={{ padding: '1rem' }}>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -92,15 +92,15 @@ export default function CampaignsPage() {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '1.5rem', color: '#64748b', fontSize: '0.9rem' }}>
             <div>Showing page {page} of {totalPages} ({total} total records)</div>
             <div style={{ display: 'flex', gap: '0.5rem' }}>
-              <button 
-                onClick={() => setPage(p => Math.max(1, p - 1))} 
+              <button
+                onClick={() => setPage(p => Math.max(1, p - 1))}
                 disabled={page === 1}
                 style={{ padding: '0.4rem 0.8rem', border: '1px solid #cbd5e1', borderRadius: '4px', background: 'white', cursor: page === 1 ? 'not-allowed' : 'pointer' }}
               >
                 Previous
               </button>
-              <button 
-                onClick={() => setPage(p => Math.min(totalPages, p + 1))} 
+              <button
+                onClick={() => setPage(p => Math.min(totalPages, p + 1))}
                 disabled={page === totalPages}
                 style={{ padding: '0.4rem 0.8rem', border: '1px solid #cbd5e1', borderRadius: '4px', background: 'white', cursor: page === totalPages ? 'not-allowed' : 'pointer' }}
               >
