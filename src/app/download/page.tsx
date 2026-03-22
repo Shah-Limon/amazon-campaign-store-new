@@ -14,7 +14,7 @@ export default function DownloadPage() {
   }, []);
 
   const handleDownload = async () => {
-    if (amount <= 0 || amount > pendingCount) return;
+    if (amount <= 0) return;
     
     setDownloading(true);
     setMessage("");
@@ -75,7 +75,6 @@ export default function DownloadPage() {
               value={amount}
               onChange={(e) => setAmount(parseInt(e.target.value) || 0)}
               min={1}
-              max={pendingCount}
               style={{ width: '100%', padding: '0.8rem 1rem', fontSize: '1.2rem', borderRadius: '6px', border: '1px solid #cbd5e1', outline: 'none', transition: 'border-color 0.2s' }}
               disabled={pendingCount === 0 || downloading}
             />
@@ -93,20 +92,12 @@ export default function DownloadPage() {
                 {val}
               </button>
             ))}
-            <button 
-                type="button"
-                onClick={() => setAmount(pendingCount)}
-                disabled={pendingCount === 0}
-                style={{ flex: 1, padding: '0.5rem', border: '1px solid #e2e8f0', background: '#f8fafc', borderRadius: '4px', cursor: pendingCount === 0 ? 'not-allowed' : 'pointer', fontWeight: 500, color: '#475569', opacity: pendingCount === 0 ? 0.5 : 1 }}
-              >
-                Max
-            </button>
           </div>
 
           <button 
             onClick={handleDownload}
             className="btn"
-            disabled={amount <= 0 || amount > pendingCount || downloading || pendingCount === 0 || isNaN(amount)}
+            disabled={amount <= 0 || downloading || pendingCount === 0 || isNaN(amount)}
             style={{ width: '100%', padding: '1rem', fontSize: '1.2rem', marginTop: '1rem' }}
           >
             {downloading ? "Processing Request..." : `Download ${amount > 0 && !isNaN(amount) ? amount : ''} IDs (.txt)`}
