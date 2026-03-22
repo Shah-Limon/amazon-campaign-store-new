@@ -9,7 +9,8 @@ export async function GET() {
     const pending = await Campaign.countDocuments({ status: "pending" });
     const downloaded = await Campaign.countDocuments({ status: "downloaded" });
     return NextResponse.json({ total, pending, downloaded });
-  } catch (error) {
-    return NextResponse.json({ error: "Failed to fetch stats" }, { status: 500 });
+  } catch (error: any) {
+    console.error("Stats API Error:", error.message || error);
+    return NextResponse.json({ error: error.message || "Failed to fetch stats" }, { status: 500 });
   }
 }
