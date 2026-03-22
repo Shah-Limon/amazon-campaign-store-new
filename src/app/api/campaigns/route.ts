@@ -28,7 +28,8 @@ export async function GET(request: NextRequest) {
     const total = await Campaign.countDocuments(query);
 
     return NextResponse.json({ campaigns, total, page, totalPages: Math.ceil(total / limit) });
-  } catch (error) {
-    return NextResponse.json({ error: "Failed to fetch campaigns" }, { status: 500 });
+  } catch (error: any) {
+    console.error("Campaigns API Error:", error.message || error);
+    return NextResponse.json({ error: error.message || "Failed to fetch campaigns" }, { status: 500 });
   }
 }
