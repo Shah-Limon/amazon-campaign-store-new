@@ -38,7 +38,15 @@ export default function DownloadPage() {
         window.URL.revokeObjectURL(url);
         document.body.removeChild(a);
 
-        setMessage(`Successfully downloaded ${data.count} Campaign IDs!`);
+        // Copy to clipboard
+        try {
+          await navigator.clipboard.writeText(data.content);
+          setMessage(`Successfully downloaded and copied ${data.count} Campaign IDs to clipboard!`);
+        } catch (clipErr) {
+          console.error("Failed to copy to clipboard:", clipErr);
+          setMessage(`Successfully downloaded ${data.count} Campaign IDs! (Clipboard copy failed)`);
+        }
+        
         setPendingCount(prev => prev - data.count);
       } else {
         setMessage(`Error: ${data.error}`);
