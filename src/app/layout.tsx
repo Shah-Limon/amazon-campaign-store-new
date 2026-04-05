@@ -22,6 +22,7 @@ export default function RootLayout({
               <a href="/upload" className="nav-item">CSV Upload</a>
               <a href="/campaigns" className="nav-item">All Campaigns</a>
               <a href="/download" className="nav-item">Download IDs</a>
+              <a href="/settings" className="nav-item">Settings</a>
             </nav>
           </aside>
           <main className="main-content">
